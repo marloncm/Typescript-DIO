@@ -3,38 +3,58 @@
     let botaoAtualizar = document.getElementById('atualizar-saldo')as HTMLButtonElement;
     let botaoLimpar = document.getElementById('limpar-saldo')as HTMLButtonElement;
     let soma = document.getElementById('soma') as HTMLInputElement;
-    let campoSaldo = document.getElementById('campo-saldo') //as HTMLTextAreaElement;
+    let campoSaldo = document.getElementById('campo-saldo') 
 
     
-    if(campoSaldo)
-    var saldo = Number(campoSaldo.innerHTML);
-    
-    
-    //saldo = 0// String(0) ;
-
-   
+    var saldo = 0;
+    console.log('teste')
+    console.log('Saldo: '+ saldo)
     
     function somarAoSaldo(soma:number) {
-        if(campoSaldo)
-        campoSaldo.innerHTML += soma;
+        console.log('chamou soma')
+        if(campoSaldo){
+            console.log('tem saldo pra somar')
+            saldo += soma;
+            campoSaldo.innerHTML = saldo.toString()
+            console.log("somou")
+            limparCampoSoma()
+        } 
     }
     
     function limparSaldo() {
-        if(campoSaldo)
-        saldo = 0;
+        if(campoSaldo){
+            console.log("tem saldo pra limpar")
+            saldo = 0;
+            campoSaldo.innerHTML = saldo.toString()
+            console.log("limpou saldo")
+        }
     }
     
-    if(botaoAtualizar)
-    botaoAtualizar.addEventListener('click',  () => {
-        if(soma)
-        somarAoSaldo(Number(soma.innerHTML));
-    });
+    if(botaoAtualizar){
+        console.log("clicou em atualizar")
+        botaoAtualizar.addEventListener('click',  () => {
+            if(soma)
+            somarAoSaldo(Number(soma.innerHTML));
+        });
+
+    }
     
-    if(botaoLimpar)
-    botaoLimpar.addEventListener('click', () =>{
-        limparSaldo();
-    });
     
+    if(botaoLimpar){
+        console.log("clicou em limpar")
+
+        botaoLimpar.addEventListener('click', () =>{
+            limparSaldo();
+        });
+    }
+    
+    
+
+    function limparCampoSoma(){
+        soma.innerHTML = ''
+        console.log("limpou soma")
+    }
+
     /**
         <h4>Valor a ser adicionado: <input id="soma"> </h4>
         <button id="atualizar-saldo">Atualizar saldo</button>
